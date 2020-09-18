@@ -1,0 +1,53 @@
+{{- /* lazysizes and lightgallery.js */ -}}
+{{- $src := .Src -}}
+{{- with dict "Path" .Src "Resources" .Resources | partial "function/resource.html" -}}
+    {{- $src = .RelPermalink -}}
+{{- end -}}
+
+{{- $small := .SrcSmall -}}
+{{- with dict "Path" .SrcSmall "Resources" .Resources | partial "function/resource.html" -}}
+    {{- $small = .RelPermalink -}}
+{{- end -}}
+
+{{- $large := .SrcLarge -}}
+{{- with dict "Path" .SrcLarge "Resources" .Resources | partial "function/resource.html" -}}
+    {{- $large = .RelPermalink -}}
+{{- end -}}
+
+{{- $alt := .Alt | default $src -}}
+{{- $loading := resources.Get "svg/loading.svg" | minify -}}
+{{- $loading = $loading.RelPermalink -}}
+{{- with .Class -}}{{- if in . "u-photo" -}}
+{{- $loading = $src -}}
+{{- with dict "Path" $.Src "Resources" $.Resources | partial "function/resource.html" -}}{{- if eq .MediaType.SubType "jpeg" -}}
+{{- $fit := .Fit "800x800" -}}{{- $loading = $fit.RelPermalink -}}
+{{- end -}}{{- end -}}
+{{- end -}}{{- end -}}
+{{- if .Linked -}}
+<a class="lightgallery" href="{{- with $large -}}{{ $large | safeURL }}{{- else -}}{{ $src | safeURL }}{{- end -}}" title="{{ .Title | default $alt }}" data-thumbnail="{{- with $small -}}{{ $small | safeURL }}{{- else -}}{{ $src | safeURL }}{{- end -}}"{{ with .Caption }} data-sub-html="<h2>{{ . }}</h2>{{ with $.Title }}<p>{{ . }}</p>{{ end }}"{{ end }}{{ with .Rel }} rel="{{ . }}"{{ end }}>
+        <img
+            class="lazyload{{ with .Class }} {{ . }}{{ end }}"
+            src="{{ $loading }}"
+            data-src="{{ $src | safeURL }}"
+	    data-srcset="{{ with $small}}{{ . | safeURL }} 0.5x, {{ end}}{{ $src | safeURL }}{{with $large}}, {{ . | safeURL }} 2x{{ end }}"
+            data-sizes="auto"
+            alt="{{ $alt }}"{{ with .Height }} height="{{ . }}"{{ end }}{{ with .Width }} width="{{ . }}"{{ end }} />
+    </a>
+{{- else -}}
+    <img
+        class="lazyload{{ with .Class }} {{ . }}{{ end }}"
+        src="{{ $loading }}"
+        data-src="{{ $src | safeURL }}"
+	data-srcset="{{ with $small}}{{ . | safeURL }} 0.5x, {{ end}}{{ $src | safeURL }}{{with $large}}, {{ . | safeURL }} 2x{{ end }}"
+        data-sizes="auto"
+        alt="{{ $alt }}"
+        title="{{ .Title | default $alt }}"{{ with .Height }} height="{{ . }}"{{ end }}{{ with .Width }} width="{{ . }}"{{ end }} />
+{{- end -}}
+<noscript>
+    <img
+	srcset="{{ with $small}}{{ . | safeURL }} 0.5x, {{ end}}{{ $src | safeURL }}{{with $large}}, {{ . | safeURL }} 2x{{ end }}"
+        sizes="auto"
+        src="{{ $src | safeURL }}"
+        alt="{{ $alt }}"
+        title="{{ .Title | default $alt }}"{{ with .Height }} height="{{ . }}"{{ end }}{{ with .Width }} width="{{ . }}"{{ end }} />
+</noscript>

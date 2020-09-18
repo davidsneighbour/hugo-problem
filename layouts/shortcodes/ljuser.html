@@ -1,0 +1,2 @@
+{{- $user := .Get 0 }}
+<a href="http://users.livejournal.com/{{- $user -}}/profile">🖉</a><a href="http://users.livejournal.com/{{- $user -}}/"><b>{{- with (.Get 1) -}}{{- . -}}{{- else -}}{{- $user -}}{{- end -}}</b></a>

@@ -1,0 +1,312 @@
+## Basic Configuration
+baseurl = "https://evgenykuznetsov.org/"
+languageCode = "ru"
+
+title = "DIMV"
+theme = "loveit"
+
+DefaultContentLanguage = "ru"
+
+# summarylength = 30
+
+#paginate = 5
+
+rssLimit = 20
+
+enableGitInfo = true
+enableRobotsTXT = true
+
+enableInlineShortcodes = false
+
+[author]
+  name = "Evgeny Kuznetsov"
+  email = "evgeny@kuznetsov.md"
+  link = "https://evgenykuznetsov.org"
+  image = "/img/avatar.jpg"
+  nickname = "nekr0z"
+  
+[languages.ru.author]
+  name = "Евгений Кузнецов"
+  email = "evgeny@kuznetsov.md"
+  link = "https://evgenykuznetsov.org"
+  image = "/img/avatar.jpg"
+  nickname = "nekr0z"
+  
+## Site Settings
+[params]
+    title = "DIMV"
+    description = "Evgeny Kuznetsov"
+    authorimage = "/img/avatar.jpg"
+    dateformat = "2 January 2006"
+    mainSections = ["posts"]
+
+    paginate = 20
+
+    # sidebar, copyright & license
+    copyright = "Evgeny Kuznetsov"
+    showBuiltWith = true
+
+    WebmentionAccount = "evgenykuznetsov.org"
+
+    websubHub = [
+	"https://switchboard.p3k.io/",
+	"http://phubb.cweiske.de/hub.php",
+	"https://evgenykuznetsov.superfeedr.com/",
+    ]
+    feedFiles = [
+	"index.xml",
+	"single-language.xml",
+    ]
+    # Table of contents
+    #toc = none, "hugo", or "tocbot"
+    toc = "hugo"
+
+    # LoveIt version
+    version = "0.2.X"
+    fingerprint = "sha384"
+  
+  [params.header]
+    desktopMode = "fixed"
+    mobileMode = "auto"
+
+  [params.search]
+    enable = true
+    type = "lunr"
+    contentLength = 4000
+    placeholder = ""
+    maxResultLength = 10
+    snippetLength = 30
+    highlightTag = "em"
+    absoluteURL = false
+
+  [params.footer]
+    since = 2003
+    license = '<a rel="license external" href="https://creativecommons.org/licenses/by-sa/4.0" title="License CC BY-SA 4.0 (where not otherwise specified)."><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-sa"></i></a>'
+
+  [languages.ru.params.footer]
+    since = 2003
+    license = '<a rel="license external" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ru" title="Лицензия CC BY-SA 4.0 (где не указано иное)."><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-sa"></i></a>'
+
+  [languages.ru.params.home]
+    rss = 20
+
+  [languages.en.params.home]
+    rss = 20
+
+    [languages.ru.params.home.posts]
+      enable = true
+      paginate = 10
+
+    [languages.en.params.home.posts]
+      enable = true
+      paginate = 10
+
+    [languages.ru.params.home.profile]
+      title = "Евгений Кузнецов"
+      avatarURL = "/img/avatar.jpg"
+      social = true
+
+    [languages.en.params.home.profile]
+      title = "Evgeny Kuznetsov"
+      avatarURL = "/img/avatar.jpg"
+      social = true
+
+  [params.section]
+    rss = 20
+
+  [params.list]
+    rss = 20
+
+  [params.typeit]
+    duration = -1
+
+  [params.page]
+    rssFullText = true
+    lightgallery = false
+
+    [params.page.toc]
+      enable = false
+
+    [params.page.comment]
+      enable = true
+
+    [params.page.code]
+      copy = true
+      maxShownLines = 100
+
+[permalinks]
+    # posts = "/:year/:slug"
+
+[webmentions]
+    excludesources = [
+	"/tags/*",
+	"/en/tags/*",
+	"/categories/*",
+	"/en/categories/*",
+	"/feeds/*",
+	"/awstats/*",
+	"/repo/*",
+	"/baikal/*",
+	"/hfeed*",
+	"/en/hfeed*",
+        "/single-language*",
+        "/en/single-language*",
+        "/page/*",
+        "/en/page/*",
+        "/index.html",
+        "/en/index.html",
+    ]
+    excludedestinations = [
+	"https://evgenykuznetsov.org",
+	"mailto:",
+	"/tags/",
+	"/en/tags/",
+	"/categories/",
+	"/en/categories/",
+    ]
+    oldDir = "old/public"
+    newDir = "public"
+
+## Social Accounts
+[params.social]
+    GitHub = "nekr0z"
+    Twitter = "nekr0z"
+    # facebook = "evgkuz"
+    orcid = "0000-0002-0343-0589"
+    microblog = "nekr0z"
+    wishlistr = "nekr0z"
+    Email = "evgeny@kuznetsov.md"
+    RSS = false
+    PGPkey = "/key.asc"
+    # gravatar = "your-email@example.com"
+    
+# ￼ App icon config
+[params.app]
+    # optional site title override for the app when added to an iOS home screen or Android launcher
+    title = "DIMV"
+    # whether to omit favicon resource links
+    noFavicon = false
+    # modern SVG favicon to use in place of older style .png and .ico files
+    svgFavicon = "/favicon.svg"
+    # Android browser theme color
+    themeColor = "#ffffff"
+    # Safari mask icon color
+    iconColor = "#6d2b2b"
+    # Windows v8-10 tile color
+    tileColor = "#ffc40d"
+
+## Main Menu
+[[languages.en.menu.main]]
+    name = "Posts"
+    weight = 100
+    identifier = "posts"
+    url = "/en/posts/"
+[[languages.ru.menu.main]]
+    name = "Записи"
+    weight = 100
+    identifier = "posts"
+    url = "/posts/"
+[[languages.en.menu.main]]
+    name = "Reactions"
+    weight = 200
+    identifier = "reactions"
+    url = "/en/reactions/"
+[[languages.ru.menu.main]]
+    name = "Реакции"
+    weight = 200
+    identifier = "reactions"
+    url = "/reactions/"
+[[languages.ru.menu.main]]
+    name = '<i class="fas fa-tags fa-fw"></i>'
+    weight = 370
+    identifier = "tags"
+    url = "/tags/"
+[[languages.ru.menu.main]]
+    name = '<i class="far fa-folder fa-fw"></i><i class="far fa-folder fa-fw"></i>'
+    weight = 360
+    identifier = "categories"
+    url = "/categories/"
+[[languages.en.menu.main]]
+    name = '<i class="fas fa-tags fa-fw"></i>'
+    weight = 370
+    identifier = "tags"
+    url = "/tags/"
+[[languages.en.menu.main]]
+    name = '<i class="far fa-folder fa-fw"></i><i class="far fa-folder fa-fw"></i>'
+    weight = 360
+    identifier = "categories"
+    url = "/categories/"
+[[languages.en.menu.main]]
+    name = "About"
+    identifier = "about"
+    weight = 350
+    url = "/en/about/"
+[[languages.ru.menu.main]]
+    name = "О сайте"
+    identifier = "about"
+    weight = 350
+    url = "/about/"
+
+[outputs]
+    page = ["HTML", "htaccess"]
+    home = ["HTML", "RSS", "hfeed", "lang", "langRSS", "JSON"]
+    section = ["HTML", "RSS", "lang", "langRSS"]
+    taxonomy = ["HTML", "lang"]
+    term = ["HTML", "RSS", "lang", "langRSS"]
+
+[mediaTypes]
+  [mediaTypes."text/htaccess"]
+    suffixes = ["htaccess"]
+
+[outputFormats]
+  [outputFormats.htaccess]
+    mediaType = "text/htaccess"
+    baseName = ""
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.hfeed]
+    mediaType = "text/html"
+    baseName = "hfeed"
+    rel = "feed"
+    permalinkable = true
+  [outputFormats.lang]
+    mediaType = "text/html"
+    baseName = "single-language"
+    permalinkable = true
+  [outputFormats.langRSS]
+    mediaType = "application/rss+xml"
+    baseName = "single-language"
+    permalinkable = false
+    noUgly = true
+
+[markup]
+  [markup.highlight]
+    lineNos = true
+    style = "github"
+    noClasses = false
+    guessSyntax = true
+    lineNumbersInTable = true
+
+[services]
+  [services.youtube]
+    privacyEnhanced = true
+
+[privacy]
+  [privacy.youtube]
+    privacyEnhanced = true
+
+[languages]
+  [languages.en]
+    languageName = "In English"
+    weight = 2
+    description = "Evgeny Kuznetsov's personal website"
+    copyright = "Evgeny Kuznetsov"
+
+  [languages.ru]
+    languageName = "По-русски"
+    weight = 1
+    description = "Личный сайт Евгения Кузнецова"
+    copyright = "Евгений Кузнецов"
+
+[imaging]
+quality = 90

@@ -1,0 +1,8 @@
+User-agent: *
+
+Disallow: /lib/
+Disallow: /js/
+Disallow: /css/
+Disallow: /index.json
+
+Sitemap: {{ "/sitemap.xml" | absLangURL }}

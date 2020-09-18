@@ -1,0 +1,5 @@
+{{- with .Params.deleted -}}ErrorDocument 410 /{{ $.File.Dir -}}index.html
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !(\index\.html)$
+RewriteRule ^(.*)$ - [L,G]{{- printf "\n" -}}
+{{- end -}}

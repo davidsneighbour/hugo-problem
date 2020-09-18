@@ -1,0 +1,37 @@
+ErrorDocument 404 /404.html
+
+Options -Indexes
+
+Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" env=HTTPS
+Header add Content-Security-Policy "frame-ancestors 'none'; default-src https: 'unsafe-inline'; base-uri 'none'; form-action 'none'; object-src 'none'; script-src 'unsafe-inline' 'self';"
+Header add X-Frame-Options "DENY"
+Header add X-Content-Type-Options "nosniff"
+Header add Cache-Control "public"
+
+Redirect /baikal https://baikal.evgenykuznetsov.org
+
+RewriteEngine On
+RewriteCond %{HTTPS} !on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{QUERY_STRING} ^_t=rss$
+RewriteRule ^.*$ /oldsite.rss [L,R=301]
+
+RewriteRule ^(.*/)?index\.xml$ - [E=PATH:$0]
+<FilesMatch "index\.xml$">
+  Header add Link '<https://evgenykuznetsov.org/%{PATH}e>; rel="self"'
+  Header add Link '<https://switchboard.p3k.io/>; rel="hub"'
+  Header add Link '<http://phubb.cweiske.de/hub.php>; rel="hub"'
+  Header add Link '<https://evgenykuznetsov.superfeedr.com/>; rel="hub"'
+</FilesMatch>
+
+RewriteBase /
+RewriteRule ^file/802695b2a394779684bfa71e2b70df0e /img/avatar.jpg [L,R=301]
+
+RewriteBase /
+RewriteRule ^.well-known/(host-meta|webfinger).* https://fed.brid.gy/$0  [redirect=302,last]
+
+<FilesMatch ".(woff2|webmanifest)$">
+ Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
